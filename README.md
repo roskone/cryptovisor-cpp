@@ -50,3 +50,11 @@ ctest --test-dir build --output-on-failure
 | M | крупные шаги (по символу / байту / столбцу) |
 | F | полный экран |
 | Esc | выйти из поля ввода / из полного экрана |
+
+## Установщик для Windows
+
+Собирается в GitHub Actions (`.github/workflows/windows-installer.yml`): при пуше тега `v*`
+или вручную через «Run workflow». Внутри: Qt 6.8 (MSVC), CMake, тесты, `windeployqt`,
+Inno Setup → `CryptoVisor-Setup-<версия>.exe` в релизе. Ставится без прав администратора.
+Локально на Windows: собрать Release, скопировать `cryptovisor.exe` в `dist\CryptoVisor`,
+выполнить `windeployqt`, затем `ISCC.exe packaging\windows\setup.iss`.
